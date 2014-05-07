@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x_server_response metalib_version="4.5.2 (790)">
+    <retrieve_resources_by_quick_set_response>
+        <set_info>
+            <source_info>
+                <source_internal_number>000001807</source_internal_number>
+                <source_001>BCL02374</source_001>
+                <source_name>Database Number One</source_name>
+                <source_short_name>Database One</source_short_name>
+                <source_searchable_flag>N</source_searchable_flag>
+            </source_info>
+            <source_info>
+                <source_internal_number>000001845</source_internal_number>
+                <source_001>BCL02363</source_001>
+                <source_name>Database Number Two</source_name>
+                <source_short_name>Database Two</source_short_name>
+                <source_searchable_flag>Y</source_searchable_flag>
+            </source_info>
+        </set_info>
+        <session_id new_session="N">7R1RSXT41CULUHKK82CYTHF8GLSMP5E1JPB7VYNQS66L3LJPQ3</session_id>
+    </retrieve_resources_by_quick_set_response>
+</x_server_response>

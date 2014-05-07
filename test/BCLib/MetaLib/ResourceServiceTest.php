@@ -36,23 +36,10 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testRetrieveByCategoryRetrieves()
     {
-        $expected = [];
-
-        $source = new Resource();
-        $source->internal_number = '000003209';
-        $source->number = 'BCL03643';
-        $source->name = 'Database Number One';
-        $source->short_name = 'Database One';
-        $source->searchable = false;
-        $expected [] = $source;
-
-        $source = new Resource();
-        $source->internal_number = '000007958';
-        $source->number = 'BCL06327';
-        $source->name = 'Database Number Two';
-        $source->short_name = 'Database Two';
-        $source->searchable = true;
-        $expected [] = $source;
+        $expected = [
+            $this->_createResource('000003209', 'BCL03643', 'Database Number One', 'Database One', false),
+            $this->_createResource('000007958', 'BCL06327', 'Database Number Two', 'Database Two', true),
+        ];
 
         $response = $this->_loadXML('resources-01.xml');
 
@@ -87,11 +74,9 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
     {
         $response = $this->_loadXML('categories-01.xml');
 
-        $params = [];
-
         $this->_client->expects($this->once())
             ->method('send')
-            ->with('retrieve_categories_request', $params, true)
+            ->with('retrieve_categories_request', [], true)
             ->will($this->returnValue($response));
 
         $resources = new ResourceService($this->_client);
@@ -105,15 +90,15 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
         $category = new Category();
         $category->name = 'Reference';
         $category->subcategories = [
-            $this->_createSubCategory('ALL','000000000','000001313'),
-            $this->_createSubCategory('Biography','000000000','000001315')
+            $this->_createSubCategory('ALL', '000000000', '000001313'),
+            $this->_createSubCategory('Biography', '000000000', '000001315')
         ];
         $expected[] = $category;
 
         $category = new Category();
         $category->name = 'Interdisciplinary';
         $category->subcategories = [
-            $this->_createSubCategory('General','000000003','000000413'),
+            $this->_createSubCategory('General', '000000003', '000000413'),
         ];
         $expected[] = $category;
 
@@ -125,6 +110,70 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
 
         $resources = new ResourceService($this->_client);
         $this->assertEquals($expected, $resources->retrieveCategories());
+    }
+
+    public function testRetrieveQuickSetsSendsCorrectParameters()
+    {
+        $response = $this->_loadXML('quicksets-01.xml');
+
+        $this->_client->expects($this->once())
+            ->method('send')
+            ->with('retrieve_quick_sets_request', [], true)
+            ->will($this->returnValue($response));
+
+        $resources = new ResourceService($this->_client);
+        $resources->retrieveQuickSets();
+    }
+
+    public function testRetrtieveQuicksetsRetrieves()
+    {
+        $expected = [
+            $this->_createQuickSet('Art/Architecture', '000037683', 'This is a sample', '000000006'),
+            $this->_createQuickSet('Boston Libraries', '000037682', '', '000000008')
+        ];
+
+        $response = $this->_loadXML('quicksets-01.xml');
+
+        $this->_client->expects($this->once())
+            ->method('send')
+            ->will($this->returnValue($response));
+
+        $resources = new ResourceService($this->_client);
+        $this->assertEquals($expected, $resources->retrieveQuickSets());
+    }
+
+    public function testRetrieveByQuickSetSendsCorrectParameters()
+    {
+        $response = $this->_loadXML('resources-02.xml');
+
+        $params = [
+            'quick_sets_id' => '000037683'
+        ];
+
+        $this->_client->expects($this->once())
+            ->method('send')
+            ->with('retrieve_resources_by_quick_set_request', $params, true)
+            ->will($this->returnValue($response));
+
+        $resources = new ResourceService($this->_client);
+        $resources->retrieveByQuickSet('000037683');
+    }
+
+    public function testRetrieveByQuickSetIdRetrieves()
+    {
+        $expected = [
+            $this->_createResource('000001807', 'BCL02374', 'Database Number One', 'Database One', false),
+            $this->_createResource('000001845', 'BCL02363', 'Database Number Two', 'Database Two', true),
+        ];
+
+        $response = $this->_loadXML('resources-02.xml');
+
+        $this->_client->expects($this->once())
+            ->method('send')
+            ->will($this->returnValue($response));
+
+        $resources = new ResourceService($this->_client);
+        $this->assertEquals($expected, $resources->retrieveByQuickSet('000037683'));
     }
 
     protected function _loadXML($file)
@@ -139,6 +188,27 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
         $sub->bases = $base;
         $sub->sequence = $sequence;
         return $sub;
+    }
+
+    protected function _createResource($int_num, $num, $name, $short, $searchable)
+    {
+        $source = new Resource();
+        $source->internal_number = $int_num;
+        $source->number = $num;
+        $source->name = $name;
+        $source->short_name = $short;
+        $source->searchable = $searchable;
+        return $source;
+    }
+
+    protected function _createQuickSet($name, $seq, $description, $bases)
+    {
+        $set = new QuickSet();
+        $set->name = $name;
+        $set->sequence = $seq;
+        $set->description = $description;
+        $set->bases = $bases;
+        return $set;
     }
 }
  
