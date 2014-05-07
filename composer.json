@@ -1,0 +1,20 @@
+{
+    "name": "bclibraries/php-metalib",
+    "description": "PHP interface for Ex Libris' MetaLib",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "BCLib\\": "src/BCLib"
+        }
+    },
+    "authors": [
+        {
+            "name": "author's name",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "4.*",
+        "phpunit/phpunit": "3.7.*"
+    }
+}
