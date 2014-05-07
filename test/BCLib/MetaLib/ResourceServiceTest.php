@@ -36,23 +36,10 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testRetrieveByCategoryRetrieves()
     {
-        $expected = [];
-
-        $source = new Resource();
-        $source->internal_number = '000003209';
-        $source->number = 'BCL03643';
-        $source->name = 'Database Number One';
-        $source->short_name = 'Database One';
-        $source->searchable = false;
-        $expected [] = $source;
-
-        $source = new Resource();
-        $source->internal_number = '000007958';
-        $source->number = 'BCL06327';
-        $source->name = 'Database Number Two';
-        $source->short_name = 'Database Two';
-        $source->searchable = true;
-        $expected [] = $source;
+        $expected = [
+            $this->_createResource('000003209', 'BCL03643', 'Database Number One', 'Database One', false),
+            $this->_createResource('000007958', 'BCL06327', 'Database Number Two', 'Database Two', true),
+        ];
 
         $response = $this->_loadXML('resources-01.xml');
 
@@ -105,15 +92,15 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
         $category = new Category();
         $category->name = 'Reference';
         $category->subcategories = [
-            $this->_createSubCategory('ALL','000000000','000001313'),
-            $this->_createSubCategory('Biography','000000000','000001315')
+            $this->_createSubCategory('ALL', '000000000', '000001313'),
+            $this->_createSubCategory('Biography', '000000000', '000001315')
         ];
         $expected[] = $category;
 
         $category = new Category();
         $category->name = 'Interdisciplinary';
         $category->subcategories = [
-            $this->_createSubCategory('General','000000003','000000413'),
+            $this->_createSubCategory('General', '000000003', '000000413'),
         ];
         $expected[] = $category;
 
@@ -139,6 +126,17 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
         $sub->bases = $base;
         $sub->sequence = $sequence;
         return $sub;
+    }
+
+    protected function _createResource($int_num, $num, $name, $short, $searchable)
+    {
+        $source = new Resource();
+        $source->internal_number = $int_num;
+        $source->number = $num;
+        $source->name = $name;
+        $source->short_name = $short;
+        $source->searchable = $searchable;
+        return $source;
     }
 }
  
