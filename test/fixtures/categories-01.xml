@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x_server_response metalib_version="4.5.2 (790)">
+    <retrieve_categories_response>
+        <category_info>
+            <category_name>Reference</category_name>
+            <subcategory_info>
+                <subcategory_name>ALL</subcategory_name>
+                <sequence>000001313</sequence>
+                <no_bases>000000000</no_bases>
+            </subcategory_info>
+            <subcategory_info>
+                <subcategory_name>Biography</subcategory_name>
+                <sequence>000001315</sequence>
+                <no_bases>000000000</no_bases>
+            </subcategory_info>
+        </category_info>
+        <category_info>
+            <category_name>Interdisciplinary</category_name>
+            <subcategory_info>
+                <subcategory_name>General</subcategory_name>
+                <sequence>000000413</sequence>
+                <no_bases>000000003</no_bases>
+            </subcategory_info>
+        </category_info>
+    </retrieve_categories_response>
+</x_server_response>
