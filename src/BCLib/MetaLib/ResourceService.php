@@ -20,6 +20,23 @@ class ResourceService
         $this->_requester_ip = $requester_ip;
     }
 
+    public function retrieveCategories()
+    {
+        $op = 'retrieve_categories_request';
+        $params = [];
+        $params = $this->_loadDefaultParams($params);
+        $result = $this->_client->send($op, $params);
+        return $this->_loadCategoryList($result);
+    }
+
+    public function retrieveQuickSets()
+    {
+        $op = 'retrieve_quick_sets_request';
+        $params = $this->_loadDefaultParams([]);
+        $result = $this->_client->send($op, $params);
+        return $this->_loadQuickSetList($result);
+    }
+
     public function retrieveByCategory($category_id)
     {
         $op = 'retrieve_resources_by_category_request';
@@ -29,15 +46,6 @@ class ResourceService
         $params = $this->_loadDefaultParams($params);
         $result = $this->_client->send($op, $params);
         return $this->_loadResourceList($result);
-    }
-
-    public function retrieveCategories()
-    {
-        $op = 'retrieve_categories_request';
-        $params = [];
-        $params = $this->_loadDefaultParams($params);
-        $result = $this->_client->send($op, $params);
-        return $this->_loadCategoryList($result);
     }
 
     protected function _loadDefaultParams(array $params)
@@ -50,14 +58,6 @@ class ResourceService
             }
         }
         return $params;
-    }
-
-    public function retrieveQuickSets()
-    {
-        $op = 'retrieve_quick_sets_request';
-        $params = $this->_loadDefaultParams([]);
-        $result = $this->_client->send($op, $params);
-        return $this->_loadQuickSetList($result);
     }
 
     /**
