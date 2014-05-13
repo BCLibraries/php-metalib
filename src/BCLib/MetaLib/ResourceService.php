@@ -52,6 +52,14 @@ class ResourceService
         return $params;
     }
 
+    public function retrieveQuickSets()
+    {
+        $op = 'retrieve_quick_sets_request';
+        $params = $this->_loadDefaultParams([]);
+        $result = $this->_client->send($op, $params);
+        return $this->_loadQuickSetList($result);
+    }
+
     /**
      * @param \SimpleXMLElement $response_xml
      *
@@ -100,5 +108,30 @@ class ResourceService
         $subcategory->sequence = (string) $subcategory_xml->sequence;
         $subcategory->bases = (string) $subcategory_xml->no_bases;
         return $subcategory;
+    }
+
+    /**
+     * @param \SimpleXMLElement $response_xml
+     *
+     * @return QuickSet[]
+     */
+    protected function _loadQuickSetList(\SimpleXMLElement $response_xml)
+    {
+        $quickset_list = [];
+        $list_xml = $response_xml->retrieve_quick_sets_response;
+        foreach ($list_xml->set_info as $set_xml) {
+            $quickset_list[] = $this->_loadQuickSet($set_xml);
+        }
+        return $quickset_list;
+    }
+
+    protected function _loadQuickSet(\SimpleXMLElement $set_xml)
+    {
+        $set = new QuickSet();
+        $set->name = $set_xml->set_name;
+        $set->sequence = $set_xml->set_sequence;
+        $set->bases = $set_xml->no_bases;
+        $set->description = $set_xml->set_description;
+        return $set;
     }
 }

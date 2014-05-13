@@ -74,11 +74,9 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
     {
         $response = $this->_loadXML('categories-01.xml');
 
-        $params = [];
-
         $this->_client->expects($this->once())
             ->method('send')
-            ->with('retrieve_categories_request', $params, true)
+            ->with('retrieve_categories_request', [], true)
             ->will($this->returnValue($response));
 
         $resources = new ResourceService($this->_client);
@@ -114,6 +112,36 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $resources->retrieveCategories());
     }
 
+    public function testRetrieveQuickSetsSendsCorrectParameters()
+    {
+        $response = $this->_loadXML('quicksets-01.xml');
+
+        $this->_client->expects($this->once())
+            ->method('send')
+            ->with('retrieve_quick_sets_request', [], true)
+            ->will($this->returnValue($response));
+
+        $resources = new ResourceService($this->_client);
+        $resources->retrieveQuickSets();
+    }
+
+    public function testRetrtieveQuicksetsRetrieves()
+    {
+        $expected = [
+            $this->_createQuickSet('Art/Architecture', '000037683', 'This is a sample', '000000006'),
+            $this->_createQuickSet('Boston Libraries', '000037682', '', '000000008')
+        ];
+
+        $response = $this->_loadXML('quicksets-01.xml');
+
+        $this->_client->expects($this->once())
+            ->method('send')
+            ->will($this->returnValue($response));
+
+        $resources = new ResourceService($this->_client);
+        $this->assertEquals($expected, $resources->retrieveQuickSets());
+    }
+
     protected function _loadXML($file)
     {
         return simplexml_load_file(__DIR__ . '/../../fixtures/' . $file);
@@ -137,6 +165,16 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
         $source->short_name = $short;
         $source->searchable = $searchable;
         return $source;
+    }
+
+    protected function _createQuickSet($name, $seq, $description, $bases)
+    {
+        $set = new QuickSet();
+        $set->name = $name;
+        $set->sequence = $seq;
+        $set->description = $description;
+        $set->bases = $bases;
+        return $set;
     }
 }
  

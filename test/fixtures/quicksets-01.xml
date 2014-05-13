@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x_server_response metalib_version="4.5.2 (790)">
+    <retrieve_quick_sets_response>
+        <set_info>
+            <set_sequence>000037683</set_sequence>
+            <set_name>Art/Architecture</set_name>
+            <set_description>This is a sample</set_description>
+            <no_bases>000000006</no_bases>
+        </set_info>
+        <set_info>
+            <set_sequence>000037682</set_sequence>
+            <set_name>Boston Libraries</set_name>
+            <set_description/>
+            <no_bases>000000008</no_bases>
+        </set_info>
+        <session_id new_session="N">T214DURERX5FUJP5NKKJ7E9D732IH2HQU6LEDDY6S6X76B16BI</session_id>
+    </retrieve_quick_sets_response>
+</x_server_response>
