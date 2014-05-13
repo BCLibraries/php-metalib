@@ -39,9 +39,18 @@ class ResourceService
 
     public function retrieveByCategory($category_id)
     {
-        $op = 'retrieve_resources_by_category_request';
+        return $this->_retrieveResourceList('retrieve_resources_by_category_request', 'category_id', $category_id);
+    }
+
+    public function retrieveByQuickSet($set_id)
+    {
+        return $this->_retrieveResourceList('retrieve_resources_by_quick_set_request', 'quick_sets_id', $set_id);
+    }
+
+    protected function _retrieveResourceList($op, $param_name, $param_value)
+    {
         $params = [
-            'category_id' => $category_id
+            $param_name => $param_value
         ];
         $params = $this->_loadDefaultParams($params);
         $result = $this->_client->send($op, $params);
@@ -67,8 +76,14 @@ class ResourceService
      */
     protected function _loadResourceList(\SimpleXMLElement $response_xml)
     {
+        $list_xml = $response_xml->children()[0];
+
+        if ($list_xml->getName() == 'retrieve_resources_by_quick_set_response') {
+            $list_xml = $list_xml->set_info;
+        }
+
         $resource_list = [];
-        $list_xml = $response_xml->retrieve_resources_by_category_response;
+
         foreach ($list_xml->source_info as $xml) {
             $resource = new Resource();
             $resource->internal_number = (string) $xml->source_internal_number;
@@ -128,10 +143,10 @@ class ResourceService
     protected function _loadQuickSet(\SimpleXMLElement $set_xml)
     {
         $set = new QuickSet();
-        $set->name = $set_xml->set_name;
-        $set->sequence = $set_xml->set_sequence;
-        $set->bases = $set_xml->no_bases;
-        $set->description = $set_xml->set_description;
+        $set->name = (string) $set_xml->set_name;
+        $set->sequence = (string) $set_xml->set_sequence;
+        $set->bases = (string) $set_xml->no_bases;
+        $set->description = (string) $set_xml->set_description;
         return $set;
     }
 }

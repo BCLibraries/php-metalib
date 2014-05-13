@@ -142,6 +142,40 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $resources->retrieveQuickSets());
     }
 
+    public function testRetrieveByQuickSetSendsCorrectParameters()
+    {
+        $response = $this->_loadXML('resources-02.xml');
+
+        $params = [
+            'quick_sets_id' => '000037683'
+        ];
+
+        $this->_client->expects($this->once())
+            ->method('send')
+            ->with('retrieve_resources_by_quick_set_request', $params, true)
+            ->will($this->returnValue($response));
+
+        $resources = new ResourceService($this->_client);
+        $resources->retrieveByQuickSet('000037683');
+    }
+
+    public function testRetrieveByQuickSetIdRetrieves()
+    {
+        $expected = [
+            $this->_createResource('000001807', 'BCL02374', 'Database Number One', 'Database One', false),
+            $this->_createResource('000001845', 'BCL02363', 'Database Number Two', 'Database Two', true),
+        ];
+
+        $response = $this->_loadXML('resources-02.xml');
+
+        $this->_client->expects($this->once())
+            ->method('send')
+            ->will($this->returnValue($response));
+
+        $resources = new ResourceService($this->_client);
+        $this->assertEquals($expected, $resources->retrieveByQuickSet('000037683'));
+    }
+
     protected function _loadXML($file)
     {
         return simplexml_load_file(__DIR__ . '/../../fixtures/' . $file);
