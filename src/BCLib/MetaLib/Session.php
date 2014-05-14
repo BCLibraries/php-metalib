@@ -4,13 +4,12 @@ namespace BCLib\MetaLib;
 
 class Session
 {
-    protected $_id;
+    protected $_id = false;
     private $_user_name;
     private $_password;
 
     public function __construct($user_name, $password)
     {
-        $this->_id = false;
         $this->_user_name = $user_name;
         $this->_password = $password;
     }
@@ -18,17 +17,17 @@ class Session
     public function id(Client $client)
     {
         if (!$this->_id) {
-            $this->_login($client);
+            $this->login($client);
         }
         return $this->_id;
     }
 
-    protected function _login(Client $client)
+    public function login(Client $client)
     {
         $op = 'login_request';
         $param = [
-            'user_name' => $this->_user_name,
-            'user_password'  => $this->_password
+            'user_name'     => $this->_user_name,
+            'user_password' => $this->_password
         ];
         $xml = $client->send($op, $param, false);
         if ($xml->login_response->auth == 'Y') {

@@ -72,7 +72,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testErrorResponseThrowsException()
     {
-        $response_xml = file_get_contents(__DIR__ . '/../../fixtures/login-error-01.xml');
+        $response_xml = $this->_loadFixture('login-error-01.xml');
 
         $response = $this->getMock('\GuzzleHttp\Message\ResponseInterface');
         $response->expects($this->any())
@@ -84,6 +84,23 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $client = new Client("http://www.example.edu", $session, $client);
         $client->send('foo', []);
+    }
+
+    public function testAuthErrorTriggersLogin()
+    {
+        $xml1 = $this->_loadFixture('not-authorized-error-01.xml');
+        $xml2 = "<foo><bar></bar></foo>";
+
+        $response = $this->getMock('\GuzzleHttp\Message\ResponseInterface');
+        $response->expects($this->exactly(2))
+            ->method('getBody')
+            ->will($this->onConsecutiveCalls($xml1, $xml2));
+
+        $http = $this->_getHttpClient($response);
+        $session = $this->_getSession();
+
+        $client = new Client('http://www.example.edu', $session, $http);
+        $client->send('foo', [], true);
     }
 
     protected function _getResponse()
@@ -115,6 +132,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->method('id')
             ->will($this->returnValue($this->_session_id));
         return $session;
+    }
+
+    protected function _loadFixture($file)
+    {
+        return file_get_contents(__DIR__ . '/../../fixtures/' . $file);
     }
 }
  

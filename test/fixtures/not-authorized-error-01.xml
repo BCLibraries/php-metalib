@@ -1,0 +1,7 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<x_server_response metalib_version="4.5.2 (790)">
+    <global_error>
+        <error_code>0151</error_code>
+        <error_text>You are not authorized to use this function</error_text>
+    </global_error>
+</x_server_response>

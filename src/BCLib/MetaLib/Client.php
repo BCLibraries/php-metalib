@@ -17,6 +17,8 @@ class Client
      */
     private $_session;
 
+    const ERR_NOT_AUTHORIZED_CODE = '0151';
+
     public function __construct($base_url, Session $session, \GuzzleHttp\Client $http_client)
     {
         $this->_http_client = $http_client;
@@ -34,19 +36,18 @@ class Client
         $result = $this->_http_client->get($url);
 
         $xml = new \SimpleXMLElement($result->getBody());
-        $this->_checkErrors($xml);
-        return $xml;
-    }
 
-    protected function _checkErrors(\SimpleXMLElement $xml)
-    {
         $error_elements = $xml->xpath('//error_text');
         if (count($error_elements) > 0) {
-
             $code = (string) $xml->xpath('//error_code')[0];
-            if ($code != '0151') {
+            if ($code == self::ERR_NOT_AUTHORIZED_CODE) {
+                $this->_session->login($this);
+                $xml = $this->send($op, $params, $require_login);
+            } else {
                 throw new MetaLibException((string) $error_elements[0]);
             }
         }
+        return $xml;
     }
+
 }
