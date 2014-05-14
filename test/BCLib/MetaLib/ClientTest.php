@@ -67,6 +67,25 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $client->send('foo', ['key1' => 'bar', 'key2' => 'baz']);
     }
 
+    /**
+     * @expectedException \BCLib\MetaLib\MetaLibException
+     */
+    public function testErrorResponseThrowsException()
+    {
+        $response_xml = file_get_contents(__DIR__ . '/../../fixtures/login-error-01.xml');
+
+        $response = $this->getMock('\GuzzleHttp\Message\ResponseInterface');
+        $response->expects($this->any())
+            ->method('getBody')
+            ->will($this->returnValue($response_xml));
+
+        $client = $this->_getHttpClient($response);
+        $session = $this->_getSession();
+
+        $client = new Client("http://www.example.edu", $session, $client);
+        $client->send('foo', []);
+    }
+
     protected function _getResponse()
     {
         $response_xml = "<foo><bar></bar></foo>";

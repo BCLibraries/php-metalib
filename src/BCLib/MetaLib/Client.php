@@ -32,6 +32,21 @@ class Client
             $url .= '&session_id=' . $this->_session->id($this);
         }
         $result = $this->_http_client->get($url);
-        return new \SimpleXMLElement($result->getBody());
+
+        $xml = new \SimpleXMLElement($result->getBody());
+        $this->_checkErrors($xml);
+        return $xml;
+    }
+
+    protected function _checkErrors(\SimpleXMLElement $xml)
+    {
+        $error_elements = $xml->xpath('//error_text');
+        if (count($error_elements) > 0) {
+
+            $code = (string) $xml->xpath('//error_code')[0];
+            if ($code != '0151') {
+                throw new MetaLibException((string) $error_elements[0]);
+            }
+        }
     }
 }

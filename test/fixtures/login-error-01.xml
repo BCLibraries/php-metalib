@@ -1,0 +1,9 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<x_server_response metalib_version="4.5.2 (790)">
+    <login_response>
+        <local_error>
+            <error_code>2038</error_code>
+            <error_text>Missing mandatory element from XML request &quot;user_name&quot;.</error_text>
+        </local_error>
+    </login_response>
+</x_server_response>
