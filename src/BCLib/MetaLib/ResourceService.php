@@ -37,6 +37,23 @@ class ResourceService
         return $this->_loadQuickSetList($result);
     }
 
+    public function retrieveAll()
+    {
+        $categories = $this->retrieveCategories();
+        $resources = array();
+        foreach ($categories as $category) {
+            foreach ($category->subcategories as $subcategory) {
+                try {
+                    $resources = array_merge($resources, $this->retrieveByCategory($subcategory->sequence));
+                } catch (MetaLibException $e) {
+                    //echo $e->getMessage();
+                }
+            }
+        }
+        $resources = array_unique($resources);
+        return $this->_sortResources($resources);
+    }
+
     public function retrieveByCategory($category_id)
     {
         return $this->_retrieveResourceList('retrieve_resources_by_category_request', 'category_id', $category_id);
@@ -148,5 +165,28 @@ class ResourceService
         $set->bases = (string) $set_xml->no_bases;
         $set->description = (string) $set_xml->set_description;
         return $set;
+    }
+
+    /**
+     * @param array $resources
+     *
+     * @return \BCLib\MetaLib\Resource[]
+     */
+    protected function _sortResources(array $resources)
+    {
+        usort(
+            $resources,
+            function ($a, $b) {
+                if ($a->name == $b->name) {
+                    return 0;
+                }
+
+                if (strtolower($a->name) < strtolower($b->name)) {
+                    return -1;
+                }
+                return 1;
+            }
+        );
+        return $resources;
     }
 }

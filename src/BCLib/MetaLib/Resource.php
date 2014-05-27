@@ -9,4 +9,9 @@ class Resource
     public $name;
     public $short_name;
     public $searchable;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 } 

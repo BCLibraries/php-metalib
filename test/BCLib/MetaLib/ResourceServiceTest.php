@@ -176,6 +176,11 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $resources->retrieveByQuickSet('000037683'));
     }
 
+    public function testRetrieveAllRetrievesAll()
+    {
+        $this->markTestIncomplete();
+    }
+
     protected function _loadXML($file)
     {
         return simplexml_load_file(__DIR__ . '/../../fixtures/' . $file);
