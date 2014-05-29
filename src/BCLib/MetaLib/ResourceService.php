@@ -13,20 +13,34 @@ class ResourceService
 
     private $_requester_ip;
 
-    public function __construct(Client $client, $requester_ip = null, $institute = null)
+    /**
+     * @var DoctrineCache
+     */
+    private $_cache;
+
+    public function __construct(Client $client, $requester_ip = null, $institute = null, Cacheable $cache = null)
     {
         $this->_client = $client;
         $this->_institute = $institute;
         $this->_requester_ip = $requester_ip;
+        $this->_cache = (is_null($cache)) ? new NullCache() : $cache;
     }
 
     public function retrieveCategories()
     {
+        $all_categories = $this->_cache->fetchAllCategories();
+        if (!is_null($all_categories)) {
+            return $all_categories;
+        }
+
         $op = 'retrieve_categories_request';
         $params = [];
         $params = $this->_loadDefaultParams($params);
         $result = $this->_client->send($op, $params);
-        return $this->_loadCategoryList($result);
+        $all_categories = $this->_loadCategoryList($result);
+
+        $this->_cache->saveAllCategories($all_categories);
+        return $all_categories;
     }
 
     public function retrieveQuickSets()
@@ -39,6 +53,11 @@ class ResourceService
 
     public function retrieveAll($subcategory_name = null)
     {
+        $resources = $this->_cache->fetchAllResources();
+        if (!is_null($resources)) {
+            return $resources;
+        }
+
         $categories = $this->retrieveCategories();
         $resources = array();
         foreach ($categories as $category) {
@@ -53,7 +72,9 @@ class ResourceService
             }
         }
         $resources = array_unique($resources);
-        return $this->_sortResources($resources);
+        $resources = $this->_sortResources($resources);
+        $this->_cache->saveAllResources($resources);
+        return $resources;
     }
 
     public function retrieveByCategory($category_id)
