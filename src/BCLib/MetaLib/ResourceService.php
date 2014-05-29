@@ -37,16 +37,18 @@ class ResourceService
         return $this->_loadQuickSetList($result);
     }
 
-    public function retrieveAll()
+    public function retrieveAll($subcategory_name = null)
     {
         $categories = $this->retrieveCategories();
         $resources = array();
         foreach ($categories as $category) {
             foreach ($category->subcategories as $subcategory) {
-                try {
-                    $resources = array_merge($resources, $this->retrieveByCategory($subcategory->sequence));
-                } catch (MetaLibException $e) {
-                    //echo $e->getMessage();
+                if ($subcategory->name == $subcategory_name) {
+                    try {
+                        $resources = array_merge($resources, $this->retrieveByCategory($subcategory->sequence));
+                    } catch (MetaLibException $e) {
+                        //echo $e->getMessage();
+                    }
                 }
             }
         }
