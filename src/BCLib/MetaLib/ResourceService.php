@@ -139,11 +139,11 @@ class ResourceService
     /**
      * @param \SimpleXMLElement $response_xml
      *
-     * @return Category[]
+     * @return CategoryContainer
      */
     protected function _loadCategoryList(\SimpleXMLElement $response_xml)
     {
-        $category_list = [];
+        $category_list = new CategoryContainer();
         $list_xml = $response_xml->retrieve_categories_response;
         foreach ($list_xml->category_info as $xml) {
             $category = new Category();
@@ -151,7 +151,7 @@ class ResourceService
             foreach ($xml->subcategory_info as $subcategory_xml) {
                 $category->subcategories[] = $this->_loadSubCategories($subcategory_xml);
             }
-            $category_list[] = $category;
+            $category_list->add($category);
         }
         return $category_list;
     }

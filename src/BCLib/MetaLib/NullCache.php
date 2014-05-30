@@ -25,7 +25,7 @@ class NullCache implements Cacheable
         return null;
     }
 
-    public function saveAllCategories(array $all_categories)
+    public function saveAllCategories(CategoryContainer $all_categories)
     {
         // NOOP
     }

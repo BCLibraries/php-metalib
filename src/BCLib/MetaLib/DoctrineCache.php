@@ -49,7 +49,7 @@ class DoctrineCache implements Cacheable
         return $this->_fetch($this->_all_resources_key);
     }
 
-    public function saveAllCategories(array $all_categories)
+    public function saveAllCategories(CategoryContainer $all_categories)
     {
         $this->_cache->save($this->_all_categories_key, $all_categories, $this->_all_categories_ttl);
     }

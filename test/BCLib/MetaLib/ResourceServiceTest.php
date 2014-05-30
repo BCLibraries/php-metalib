@@ -85,7 +85,7 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testRetrtieveCategoriesRetrieves()
     {
-        $expected = [];
+        $expected = new CategoryContainer();
 
         $category = new Category();
         $category->name = 'Reference';
@@ -93,14 +93,14 @@ class ResourceServiceTest extends \PHPUnit_Framework_TestCase
             $this->_createSubCategory('ALL', '000000000', '000001313'),
             $this->_createSubCategory('Biography', '000000000', '000001315')
         ];
-        $expected[] = $category;
+        $expected->add($category);
 
         $category = new Category();
         $category->name = 'Interdisciplinary';
         $category->subcategories = [
             $this->_createSubCategory('General', '000000003', '000000413'),
         ];
-        $expected[] = $category;
+        $expected->add($category);
 
         $response = $this->_loadXML('categories-01.xml');
 
