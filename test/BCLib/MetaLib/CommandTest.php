@@ -8,7 +8,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     {
         $op = 'baz';
         $params = ['foo' => 'bar'];
-        $reader = $this->getMockBuilder("\BCLib\MetaLib\ResponseReader")->getMock();
+        $reader = $this->getMockBuilder("\BCLib\MetaLib\Readers\ResponseReader")->getMock();
         $command = new Command($op, $params, true, $reader);
 
         $this->assertEquals($op, $command->op);
@@ -22,7 +22,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
 
         $op = 'baz';
         $params = ['foo' => 'bar'];
-        $reader = $this->getMockBuilder("\BCLib\MetaLib\ResponseReader")->getMock();
+        $reader = $this->getMockBuilder("\BCLib\MetaLib\Readers\ResponseReader")->getMock();
         $reader->expects($this->once())
             ->method('read')
             ->with($this->equalTo($xml));
@@ -35,7 +35,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     {
         $op = 'baz';
         $params = ['foo' => 'bar'];
-        $reader = $this->getMockBuilder("\BCLib\MetaLib\ResponseReader")->getMock();
+        $reader = $this->getMockBuilder("\BCLib\MetaLib\Readers\ResponseReader")->getMock();
         $command = new Command($op, $params, true, $reader);
 
         $command->addErrorListener(

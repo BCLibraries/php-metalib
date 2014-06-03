@@ -9,6 +9,8 @@
 namespace BCLib\MetaLib;
 
 
+use BCLib\MetaLib\Readers\CategoriesReader;
+
 class CategoriesReaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testReadReadsCategories()

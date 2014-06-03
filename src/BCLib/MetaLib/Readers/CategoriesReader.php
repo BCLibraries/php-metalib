@@ -1,6 +1,10 @@
 <?php
 
-namespace BCLib\MetaLib;
+namespace BCLib\MetaLib\Readers;
+
+use BCLib\MetaLib\Category;
+use BCLib\MetaLib\CategoryContainer;
+use BCLib\MetaLib\Subcategory;
 
 class CategoriesReader implements ResponseReader
 {

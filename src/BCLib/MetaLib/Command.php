@@ -2,6 +2,8 @@
 
 namespace BCLib\MetaLib;
 
+use BCLib\MetaLib\Readers\ResponseReader;
+
 /**
  * Class Command
  * @package BCLib\MetaLib
@@ -43,7 +45,7 @@ class Command
     public function notify($error_code, $message, $url)
     {
         if (!isset($this->_errorListeners[$error_code])) {
-            throw new MetaLibException("MetaLib Exception ($error_code) $mesage <$url>");
+            throw new MetaLibException("MetaLib Exception ($error_code) $message <$url>");
         }
 
         return $this->_errorListeners[$error_code]($message, $url);

@@ -2,6 +2,8 @@
 
 namespace BCLib\MetaLib;
 
+use BCLib\MetaLib\Readers\ResourceListReader;
+
 class ResourceListReaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testReadCategoryResponseReturnsResourceList()

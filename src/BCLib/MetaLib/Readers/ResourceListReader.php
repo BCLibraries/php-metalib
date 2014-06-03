@@ -1,6 +1,8 @@
 <?php
 
-namespace BCLib\MetaLib;
+namespace BCLib\MetaLib\Readers;
+
+use BCLib\MetaLib\Resource;
 
 class ResourceListReader implements ResponseReader
 {
