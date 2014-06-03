@@ -1,24 +1,14 @@
 <?php
 
-namespace BCLib\MetaLib\Readers;
+namespace BCLib\MetaLib\Commands;
 
+use BCLib\MetaLib\Command;
 use BCLib\MetaLib\Resource;
 
-class ResourceListReader implements ResponseReader
+abstract class ResourceSearch extends Command
 {
-    /**
-     * @param \SimpleXMLElement $xml
-     *
-     * @return Resource[]
-     */
-    public function read(\SimpleXMLElement $xml)
+    protected function _readResourceList(\SimpleXMLElement $list_xml)
     {
-        $list_xml = $xml->children()[0];
-
-        if ($list_xml->getName() == 'retrieve_resources_by_quick_set_response') {
-            $list_xml = $list_xml->set_info;
-        }
-
         $resource_list = [];
 
         foreach ($list_xml->source_info as $xml) {

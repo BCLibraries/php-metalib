@@ -1,24 +1,32 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: florinb
- * Date: 6/2/14
- * Time: 8:10 PM
- */
 
-namespace BCLib\MetaLib;
+use BCLib\MetaLib\Category;
+use BCLib\MetaLib\CategoryContainer;
+use BCLib\MetaLib\Commands\GetCategories;
+use BCLib\MetaLib\Subcategory;
 
-
-use BCLib\MetaLib\Readers\CategoriesReader;
-
-class CategoriesReaderTest extends \PHPUnit_Framework_TestCase
+class GetCategoriesTest extends PHPUnit_Framework_TestCase
 {
+    public function testCorrectAttributesAreSet()
+    {
+        $op = 'retrieve_categories_request';
+        $params = [
+            'requester_ip' => '167.0.0.7'
+        ];
+        $require_login = true;
+
+        $command = new GetCategories('167.0.0.7');
+        $this->assertEquals($op, $command->op);
+        $this->assertEquals($params, $command->params);
+        $this->assertEquals($require_login, $command->require_login);
+    }
+
     public function testReadReadsCategories()
     {
         $categories = new CategoryContainer();
 
         $category_one = new Category();
-        $category_one->name= 'Reference';
+        $category_one->name = 'Reference';
 
         $subcat_one = new Subcategory();
         $subcat_one->name = 'ALL';
@@ -44,11 +52,11 @@ class CategoriesReaderTest extends \PHPUnit_Framework_TestCase
         $categories->add($category_one);
         $categories->add($category_two);
 
-        $reader = new CategoriesReader();
+        $command = new GetCategories();
 
-        $xml = simplexml_load_file(__DIR__ . '/../../fixtures/categories-01.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../../fixtures/categories-01.xml');
 
-        $this->assertEquals($categories, $reader->read($xml));
+        $this->assertEquals($categories, $command->read($xml));
     }
 }
  

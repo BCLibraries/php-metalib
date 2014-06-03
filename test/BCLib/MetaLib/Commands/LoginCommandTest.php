@@ -24,7 +24,7 @@ class LoginCommandTest extends \PHPUnit_Framework_TestCase
 
     public function testReadsValidResponseCorrectly()
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../fixtures/valid-login-01.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../../fixtures/valid-login-01.xml');
         $command = new LoginCommand('user', 'passwd', '167.0.0.1');
         $this->assertEquals('XHU95VLSX1NGLA6HQPVKTU5H8FDH6A65UT61QD36JB6F2VSJ47', $command->read($xml));
     }
@@ -34,7 +34,7 @@ class LoginCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testReadsInvalidLoginCorrectly()
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../fixtures/invalid-login-01.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../../fixtures/invalid-login-01.xml');
         $command = new LoginCommand('user', 'passwd', '167.0.0.1');
         $command->read($xml);
     }

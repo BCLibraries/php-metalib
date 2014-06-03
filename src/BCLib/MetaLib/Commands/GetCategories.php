@@ -1,13 +1,20 @@
 <?php
 
-namespace BCLib\MetaLib\Readers;
+namespace BCLib\MetaLib\Commands;
 
 use BCLib\MetaLib\Category;
 use BCLib\MetaLib\CategoryContainer;
+use BCLib\MetaLib\Command;
 use BCLib\MetaLib\Subcategory;
 
-class CategoriesReader implements ResponseReader
+class GetCategories extends Command
 {
+    public function __construct($requester_ip = '127.0.0.1')
+    {
+        $op = 'retrieve_categories_request';
+        $params = ['requester_ip' => $requester_ip];
+        parent::__construct($op, $params, true);
+    }
 
     public function read(\SimpleXMLElement $xml)
     {
