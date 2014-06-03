@@ -12,28 +12,22 @@ use BCLib\MetaLib\Readers\ResponseReader;
  * @property-read string[]       $params
  * @property-read boolean        require_login
  */
-class Command
+abstract class Command
 {
     protected $_op;
     protected $_params;
     protected $_require_login;
 
     /**
-     * @var ResponseReader
-     */
-    protected $_response_reader;
-
-    /**
      * @var callable[]
      */
     protected $_errorListeners;
 
-    public function __construct($op, $params, $require_login, ResponseReader $response_reader)
+    public function __construct($op, $params, $require_login)
     {
         $this->op = $op;
         $this->params = $params;
         $this->_require_login = $require_login;
-        $this->_response_reader = $response_reader;
         $this->_errorListeners = [];
     }
 
@@ -51,11 +45,6 @@ class Command
         return $this->_errorListeners[$error_code]($message, $url);
     }
 
-    public function read(\SimpleXMLElement $_response_xml)
-    {
-        return $this->_response_reader->read($_response_xml);
-    }
-
     public function __get($name)
     {
         $accessible_attributes = ['op', 'params', 'require_login'];
@@ -64,4 +53,6 @@ class Command
             return $this->$name;
         }
     }
+
+    abstract public function read(\SimpleXMLElement $response_xml);
 }
