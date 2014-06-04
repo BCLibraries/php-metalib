@@ -1,8 +1,7 @@
 <?php
 
-use BCLib\MetaLib\Commands\GetResourcesByCategory;
 use BCLib\MetaLib\Commands\GetResourcesByQuickSet;
-use BCLib\MetaLib\Resource;
+use BCLib\MetaLib\Models\Resource;
 
 class GetResourcesByQuickSetTest extends PHPUnit_Framework_TestCase
 {

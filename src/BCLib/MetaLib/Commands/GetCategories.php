@@ -2,10 +2,10 @@
 
 namespace BCLib\MetaLib\Commands;
 
-use BCLib\MetaLib\Category;
+use BCLib\MetaLib\Models\Category;
 use BCLib\MetaLib\CategoryContainer;
 use BCLib\MetaLib\Command;
-use BCLib\MetaLib\Subcategory;
+use BCLib\MetaLib\Models\Subcategory;
 
 class GetCategories extends Command
 {

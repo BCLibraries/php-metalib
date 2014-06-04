@@ -3,8 +3,8 @@
     "description": "PHP interface for Ex Libris' MetaLib",
     "license": "proprietary",
     "autoload": {
-        "psr-4": {
-            "BCLib\\": "src/BCLib"
+        "psr-0": {
+            "BCLib\\": "src"
         }
     },
     "authors": [
@@ -16,6 +16,8 @@
     "require": {
         "guzzlehttp/guzzle": "4.*",
         "phpunit/phpunit": "3.7.*",
-        "doctrine/cache": "1.3.*"
+        "doctrine/cache": "1.3.*",
+        "doctrine/orm": "2.4.*",
+        "symfony/yaml": "2.*"
     }
 }

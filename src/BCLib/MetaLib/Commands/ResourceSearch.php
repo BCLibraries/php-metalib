@@ -3,7 +3,7 @@
 namespace BCLib\MetaLib\Commands;
 
 use BCLib\MetaLib\Command;
-use BCLib\MetaLib\Resource;
+use BCLib\MetaLib\Models\Resource;
 
 abstract class ResourceSearch extends Command
 {

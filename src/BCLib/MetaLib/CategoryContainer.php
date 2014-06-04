@@ -2,18 +2,19 @@
 
 namespace BCLib\MetaLib;
 
+use BCLib\MetaLib\Models\Category;
 use Traversable;
 
 class CategoryContainer implements \IteratorAggregate
 {
 
     /**
-     * @var Category[]
+     * @var Models\Category[]
      */
     protected $_categories_by_num;
 
     /**
-     * @var Category[]
+     * @var Models\Category[]
      */
     protected $_categories_by_name;
 

@@ -1,9 +1,9 @@
 <?php
 
-use BCLib\MetaLib\Category;
+use BCLib\MetaLib\Models\Category;
 use BCLib\MetaLib\CategoryContainer;
 use BCLib\MetaLib\Commands\GetCategories;
-use BCLib\MetaLib\Subcategory;
+use BCLib\MetaLib\Models\Subcategory;
 
 class GetCategoriesTest extends PHPUnit_Framework_TestCase
 {

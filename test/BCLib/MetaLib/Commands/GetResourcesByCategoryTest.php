@@ -1,7 +1,7 @@
 <?php
 
 use BCLib\MetaLib\Commands\GetResourcesByCategory;
-use BCLib\MetaLib\Resource;
+use BCLib\MetaLib\Models\Resource;
 
 class GetResourcesByCategoryTest extends PHPUnit_Framework_TestCase
 {
