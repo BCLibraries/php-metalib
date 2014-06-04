@@ -1,0 +1,41 @@
+BCLib\MetaLib\Models\Subcategory:
+  type: entity
+  table: subcategories
+  id:
+    _sequence:
+      column: sequence
+      type: string
+      length: 9
+      generator:
+        strategy: NONE
+  fields:
+    _name:
+      column: name
+      type: string
+      length: 100
+      generator:
+        strategy: AUTO
+    _bases:
+      column: bases
+      type: string
+      length: 9
+      generator:
+        strategy: AUTO
+  manyToOne:
+    _category:
+      targetEntity: Category
+      inversedBy: _subcategories
+      joinColumn:
+        name: category_id
+        referencedColumnName: name
+  manyToMany:
+    _resources:
+      targetEntity: Resource
+      joinTable:
+        name: subcategories_resources
+        joinColumns:
+          subcategory_sequence:
+            referencedColumnName: sequence
+        inverseJoinColumns:
+          resource_number:
+            referencedColumnName: number

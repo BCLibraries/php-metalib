@@ -2,6 +2,8 @@
 
 namespace BCLib\MetaLib\Models;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Class Category
  * @package BCLib\MetaLib
@@ -27,6 +29,6 @@ class Category
 
     public function __construct()
     {
-        $this->_subcategories = new \ArrayObject();
+        $this->_subcategories = new ArrayCollection();
     }
 }

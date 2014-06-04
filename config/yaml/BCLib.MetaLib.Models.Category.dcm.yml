@@ -1,0 +1,15 @@
+BCLib\MetaLib\Models\Category:
+  type: entity
+  table: categories
+  id:
+    _name:
+      column: name
+      type: string
+      length: 80
+      generator:
+        strategy: NONE
+  oneToMany:
+      _subcategories:
+        targetEntity: Subcategory
+        mappedBy: _category
+        cascade: ["persist", "remove"]

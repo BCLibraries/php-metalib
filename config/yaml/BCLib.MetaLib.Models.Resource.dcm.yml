@@ -1,0 +1,26 @@
+BCLib\MetaLib\Models\Resource:
+  type: entity
+  table: resources
+  id:
+    _number:
+      column: number
+      type: string
+      length: 9
+      generator:
+        strategy: NONE
+  fields:
+    _internal_number:
+      column: internal_number
+      type: string
+      length: 20
+    _name:
+      column: name
+      type: string
+      length: 200
+    _short_name:
+      column: short_name
+      type: string
+      length: 200
+    _searchable:
+      column: searchable
+      type: boolean
