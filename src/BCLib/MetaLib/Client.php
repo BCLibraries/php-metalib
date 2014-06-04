@@ -62,7 +62,7 @@ class Client
             $this->login();
             return $this->send($command);
         } else {
-            $command->notify($code, $message, $url);
+            return $command->notify($code, $message, $url);
         }
     }
 

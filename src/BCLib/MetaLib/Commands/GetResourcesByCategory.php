@@ -10,11 +10,30 @@ class GetResourcesByCategory extends ResourceSearch
         $params = [
             'category_id' => $category_id
         ];
+
+        $return_empty = function () {
+            $xml = <<<XML
+<x_server_response metalib_version="4.5.2 (790)">
+    <retrieve_resources_by_category_response>
+    </retrieve_resources_by_category_response>
+</x_server_response>
+XML;
+            return simplexml_load_string($xml);
+        };
+
+        $this->addErrorListener('6022', $return_empty);
+        $this->addErrorListener('6023', $return_empty);
+
         parent::__construct($op, $params, true);
     }
 
     public function read(\SimpleXMLElement $xml)
     {
         return $this->_readResourceList($xml->children()[0]);
+    }
+
+    public function doNothing()
+    {
+        //
     }
 }

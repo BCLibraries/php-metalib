@@ -14,9 +14,9 @@ use BCLib\MetaLib\Readers\ResponseReader;
  */
 abstract class Command
 {
-    protected $_op;
-    protected $_params;
-    protected $_require_login;
+    public $_op;
+    public $_params;
+    public $_require_login;
 
     /**
      * @var callable[]
@@ -25,10 +25,9 @@ abstract class Command
 
     public function __construct($op, $params, $require_login)
     {
-        $this->op = $op;
-        $this->params = $params;
+        $this->_op = $op;
+        $this->_params = $params;
         $this->_require_login = $require_login;
-        $this->_errorListeners = [];
     }
 
     public function addErrorListener($error_code, callable $callback)
@@ -41,7 +40,6 @@ abstract class Command
         if (!isset($this->_errorListeners[$error_code])) {
             throw new MetaLibException("MetaLib Exception ($error_code) $message <$url>");
         }
-
         return $this->_errorListeners[$error_code]($message, $url);
     }
 
