@@ -4,7 +4,7 @@ namespace BCLib\MetaLib;
 
 use BCLib\MetaLib\Commands\GetCategories;
 use BCLib\MetaLib\Commands\GetResourcesByCategory;
-use BCLib\MetaLib\Commands\LoginCommand;
+use BCLib\MetaLib\Commands\Login;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
@@ -15,7 +15,7 @@ class MetaLib
     protected $_base_url;
 
     /**
-     * @var LoginCommand
+     * @var Login
      */
     protected $_login;
 
@@ -33,7 +33,7 @@ class MetaLib
     public function accessParams($metadata_host, $user, $passwd, $ip = null)
     {
         $this->_base_url = $metadata_host;
-        $this->_login = new LoginCommand($user, $passwd, $ip);
+        $this->_login = new Login($user, $passwd, $ip);
         return $this;
     }
 

@@ -32,12 +32,14 @@ class GetCategoriesTest extends PHPUnit_Framework_TestCase
         $subcat_one->name = 'ALL';
         $subcat_one->bases = '000000000';
         $subcat_one->sequence = '000001313';
+        $subcat_one->category = $category_one;
         $category_one->subcategories[] = $subcat_one;
 
         $subcat_two = new Subcategory();
         $subcat_two->name = 'Biography';
         $subcat_two->bases = '000000000';
         $subcat_two->sequence = '000001315';
+        $subcat_two->category = $category_one;
         $category_one->subcategories[] = $subcat_two;
 
         $category_two = new Category();
@@ -47,6 +49,7 @@ class GetCategoriesTest extends PHPUnit_Framework_TestCase
         $subcat_three->name = 'General';
         $subcat_three->bases = '000000003';
         $subcat_three->sequence = '000000413';
+        $subcat_three->category = $category_two;
         $category_two->subcategories[] = $subcat_three;
 
         $categories->add($category_one);

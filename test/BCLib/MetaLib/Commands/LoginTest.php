@@ -2,7 +2,7 @@
 
 namespace BCLib\MetaLib;
 
-use BCLib\MetaLib\Commands\LoginCommand;
+use BCLib\MetaLib\Commands\Login;
 
 class LoginCommandTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +15,7 @@ class LoginCommandTest extends \PHPUnit_Framework_TestCase
             'requester_ip'  => '167.0.0.1'
         ];
         $reader = $this->getMockBuilder("\BCLib\MetaLib\Readers\LoginReader")->getMock();
-        $command = new LoginCommand('user', 'passwd', '167.0.0.1', $reader);
+        $command = new Login('user', 'passwd', '167.0.0.1', $reader);
 
         $this->assertEquals($op, $command->op);
         $this->assertEquals($params, $command->params);
@@ -25,7 +25,7 @@ class LoginCommandTest extends \PHPUnit_Framework_TestCase
     public function testReadsValidResponseCorrectly()
     {
         $xml = simplexml_load_file(__DIR__ . '/../../../fixtures/valid-login-01.xml');
-        $command = new LoginCommand('user', 'passwd', '167.0.0.1');
+        $command = new Login('user', 'passwd', '167.0.0.1');
         $this->assertEquals('XHU95VLSX1NGLA6HQPVKTU5H8FDH6A65UT61QD36JB6F2VSJ47', $command->read($xml));
     }
 
@@ -35,7 +35,7 @@ class LoginCommandTest extends \PHPUnit_Framework_TestCase
     public function testReadsInvalidLoginCorrectly()
     {
         $xml = simplexml_load_file(__DIR__ . '/../../../fixtures/invalid-login-01.xml');
-        $command = new LoginCommand('user', 'passwd', '167.0.0.1');
+        $command = new Login('user', 'passwd', '167.0.0.1');
         $command->read($xml);
     }
 }

@@ -4,7 +4,7 @@ namespace BCLib\MetaLib\Commands;
 
 use BCLib\MetaLib\Command;
 
-class LoginCommand extends Command
+class Login extends Command
 {
     public function __construct($user, $password, $ip = '127.0.0.1')
     {

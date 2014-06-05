@@ -2,7 +2,7 @@
 
 namespace BCLib\MetaLib;
 
-use BCLib\MetaLib\Commands\LoginCommand;
+use BCLib\MetaLib\Commands\Login;
 use Doctrine\Common\Cache\Cache;
 
 class Client
@@ -20,7 +20,7 @@ class Client
     private $_cache;
 
     /**
-     * @var Commands\LoginCommand
+     * @var Commands\Login
      */
     private $_login;
 
@@ -31,7 +31,7 @@ class Client
     const ERR_NOT_AUTHORIZED_CODE = '0151';
     const ERR_SESSION_TIMEOUT = '2050';
 
-    public function __construct($base_url, \GuzzleHttp\Client $http_client, LoginCommand $login, Cache $cache = null)
+    public function __construct($base_url, \GuzzleHttp\Client $http_client, Login $login, Cache $cache = null)
     {
         $this->_cache = is_null($cache) ? new NullCache() : $this->_cache;
         $this->_http_client = $http_client;
