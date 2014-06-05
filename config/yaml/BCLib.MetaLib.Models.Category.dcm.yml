@@ -12,4 +12,3 @@ BCLib\MetaLib\Models\Category:
       _subcategories:
         targetEntity: Subcategory
         mappedBy: _category
-        cascade: ["persist", "remove"]

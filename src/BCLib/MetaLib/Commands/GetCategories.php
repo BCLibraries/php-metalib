@@ -24,19 +24,20 @@ class GetCategories extends Command
             $category = new Category();
             $category->name = (string) $xml->category_name;
             foreach ($xml->subcategory_info as $subcategory_xml) {
-                $category->subcategories[] = $this->_loadSubCategories($subcategory_xml);
+                $category->subcategories[] = $this->_loadSubCategories($subcategory_xml, $category);
             }
             $category_list->add($category);
         }
         return $category_list;
     }
 
-    protected function _loadSubCategories(\SimpleXMLElement $subcategory_xml)
+    protected function _loadSubCategories(\SimpleXMLElement $subcategory_xml, Category $parent)
     {
         $subcategory = new Subcategory();
         $subcategory->name = (string) $subcategory_xml->subcategory_name;
         $subcategory->sequence = (string) $subcategory_xml->sequence;
         $subcategory->bases = (string) $subcategory_xml->no_bases;
+        $subcategory->category = $parent;
         return $subcategory;
     }
 }

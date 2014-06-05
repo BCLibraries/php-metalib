@@ -4,7 +4,7 @@ namespace BCLib\MetaLib\Commands;
 
 class GetResourcesByCategory extends ResourceSearch
 {
-    public function __construct($category_id)
+    public function __construct($category_id = null)
     {
         $op = 'retrieve_resources_by_category_request';
         $params = [
@@ -25,6 +25,11 @@ XML;
         $this->addErrorListener('6023', $return_empty);
 
         parent::__construct($op, $params, true);
+    }
+
+    public function setCategoryId($cat_id)
+    {
+        $this->_params['category_id'] = $cat_id;
     }
 
     public function read(\SimpleXMLElement $xml)

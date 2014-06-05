@@ -8,10 +8,11 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Class Subcategory
  * @package BCLib\MetaLib\Models
  *
- * @property string   name
- * @property string   sequence
- * @property string   bases
- * @property Category category
+ * @property string     name
+ * @property string     sequence
+ * @property string     bases
+ * @property Category   category
+ * @property array      resources
  */
 class Subcategory
 {
