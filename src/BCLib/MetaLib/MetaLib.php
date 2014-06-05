@@ -67,7 +67,8 @@ class MetaLib
         $this->_checkServiceRequirements();
         $client = $this->_buildClient();
         $em = $this->_buildEntityManager();
-        return new Service($client, $em);
+        $queries = new QueryRepository($em);
+        return new Service($client, $queries);
     }
 
 
