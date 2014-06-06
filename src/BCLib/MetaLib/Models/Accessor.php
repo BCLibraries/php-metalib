@@ -47,4 +47,18 @@ trait Accessor
             }
         }
     }
+
+    public function __isset($name)
+    {
+        if (isset($this->_gettable) && in_array($name, $this->_gettable)) {
+            $name = "_$name";
+            return isset($this->$name);
+        }
+
+        if (method_exists($this, $method_name)) {
+            return !is_null($this->$method_name());
+        }
+
+        return false;
+    }
 }
