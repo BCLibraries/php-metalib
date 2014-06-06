@@ -39,10 +39,10 @@ class QueryRepository
     {
         $qb = $this->_em->createQueryBuilder();
         $qb->select('Resource')
-            ->from('\BCLib\MetaLib\Models\Category', 'Category')
+            ->from('\BCLib\MetaLib\Models\Resource', 'Resource')
             ->orderBy('Resource._name', 'ASC');
         if (!is_null($id)) {
-            $qb->where($qb->expr()->eq('Category._number', ':id'))
+            $qb->where($qb->expr()->eq('Resource._number', ':id'))
                 ->setParameter(':id', $id);
         }
         return $this->_sendQuery($qb, $ttl);
