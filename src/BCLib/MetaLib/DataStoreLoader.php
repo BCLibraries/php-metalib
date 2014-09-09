@@ -38,11 +38,13 @@ class DataStoreLoader
         Client $client,
         GetCategories $get_cat,
         GetResourcesByCategory $get_res
-    ) {
+    )
+    {
         $this->_em = $em;
         $this->_client = $client;
         $this->_get_cat = $get_cat;
         $this->_get_res = $get_res;
+        $this->_get_res->fullInfo();
     }
 
     public function load()

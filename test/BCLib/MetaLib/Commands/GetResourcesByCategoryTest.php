@@ -13,7 +13,8 @@ class GetResourcesByCategoryTest extends PHPUnit_Framework_TestCase
         ];
         $require_login = true;
 
-        $command = new GetResourcesByCategory('00000035');
+        $command = new GetResourcesByCategory();
+        $command->setCategoryId('00000035');
         $this->assertEquals($op, $command->op);
         $this->assertEquals($params, $command->params);
         $this->assertEquals($require_login, $command->require_login);

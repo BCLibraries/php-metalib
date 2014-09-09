@@ -73,7 +73,7 @@ class Service
      * @param string $first_letters
      * @param int    $cache_ttl
      *
-     * @return Resource[]s
+     * @return Resource[]
      * @throws MetaLibException
      */
     public function getResourcesByFirstLetters($first_letters, $cache_ttl = 3600)

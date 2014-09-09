@@ -35,6 +35,16 @@ class QueryRepository
         return $this->_sendQuery($qb, $ttl);
     }
 
+    /**
+     * @param array $params possible values:
+     *                      ['id' => resource number,
+     *                      'name' => resource name,
+     *                      'first_letter' => first letter(s) in name]
+     *
+     * @param int   $ttl    Query cache time-to-live
+     *
+     * @return array
+     */
     public function sendResourcesQuery($params, $ttl = 3600)
     {
         $qb = $this->_em->createQueryBuilder();

@@ -33,7 +33,7 @@ class Client
 
     public function __construct($base_url, \GuzzleHttp\Client $http_client, Login $login, Cache $cache = null)
     {
-        $this->_cache = is_null($cache) ? new NullCache() : $this->_cache;
+        $this->_cache = is_null($cache) ? new NullCache() : $cache;
         $this->_http_client = $http_client;
         $this->_base_url = $base_url;
         $this->_login = $login;
@@ -79,8 +79,6 @@ class Client
 
     public function id(Client $client)
     {
-
-
         if ($this->_session_id) {
             // Do nothing if we already have a session id.
         } elseif ($this->_cache->contains(self::SESSION_CACHE_KEY)) {

@@ -11,6 +11,7 @@ namespace BCLib\MetaLib\Models;
  * @property string name
  * @property string short_name
  * @property string searchable
+ * @property sting  description
  */
 class Resource
 {
@@ -19,6 +20,7 @@ class Resource
     protected $_name;
     protected $_short_name;
     protected $_searchable;
+    protected $_description;
 
     public function __toString()
     {
@@ -26,6 +28,6 @@ class Resource
     }
 
     use Accessor;
-    protected $_gettable = ['internal_number', 'number', 'name', 'short_name', 'searchable'];
-    protected $_settable = ['internal_number', 'number', 'name', 'short_name', 'searchable'];
+    protected $_gettable = ['internal_number', 'number', 'name', 'short_name', 'searchable', 'description'];
+    protected $_settable = ['internal_number', 'number', 'name', 'short_name', 'searchable', 'description'];
 } 

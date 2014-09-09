@@ -24,3 +24,7 @@ BCLib\MetaLib\Models\Resource:
     _searchable:
       column: searchable
       type: boolean
+    _description:
+      column: description
+      type: text
+      nullable: true
