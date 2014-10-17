@@ -2,16 +2,16 @@
 
 namespace BCLib\MetaLib\Commands;
 
-use BCLib\MetaLib\ResponseReader;
+use BCLib\MetaLib\ResourceReader;
 
 class GetResourcesByCategory extends ResourceSearch
 {
     /**
-     * @var ResponseReader
+     * @var ResourceReader
      */
     private $reader;
 
-    public function __construct(ResponseReader $reader)
+    public function __construct(ResourceReader $reader)
     {
         $op = 'retrieve_resources_by_category_request';
         $params = [];

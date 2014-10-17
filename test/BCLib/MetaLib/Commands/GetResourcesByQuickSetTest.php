@@ -34,6 +34,6 @@ class GetResourcesByQuickSetTest extends PHPUnit_Framework_TestCase
 
     public function getReader()
     {
-        return $this->getMock('\BCLib\MetaLib\ResponseReader');
+        return $this->getMock('\BCLib\MetaLib\ResourceReader');
     }
 }

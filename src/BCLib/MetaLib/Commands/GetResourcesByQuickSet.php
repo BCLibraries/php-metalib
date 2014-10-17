@@ -2,16 +2,16 @@
 
 namespace BCLib\MetaLib\Commands;
 
-use BCLib\MetaLib\ResponseReader;
+use BCLib\MetaLib\ResourceReader;
 
 class GetResourcesByQuickSet extends ResourceSearch
 {
     /**
-     * @var ResponseReader
+     * @var ResourceReader
      */
     private $reader;
 
-    public function __construct($quickset_id, ResponseReader $reader)
+    public function __construct($quickset_id, ResourceReader $reader)
     {
         $op = 'retrieve_resources_by_quick_set_request';
         $params = [
