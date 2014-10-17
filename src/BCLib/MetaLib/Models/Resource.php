@@ -6,12 +6,13 @@ namespace BCLib\MetaLib\Models;
  * Class Resource
  * @package BCLib\MetaLib\Models
  *
- * @property string internal_number
- * @property string number
- * @property string name
- * @property string short_name
- * @property string searchable
- * @property sting  description
+ * @property string                          internal_number
+ * @property string                          number
+ * @property string                          name
+ * @property string                          short_name
+ * @property string                          searchable
+ * @property string                          description
+ * @property \BCLib\Metalib\Models\Keyword[] keywords
  */
 class Resource
 {
@@ -21,6 +22,7 @@ class Resource
     protected $_short_name;
     protected $_searchable;
     protected $_description;
+    protected $_keywords;
 
     public function __toString()
     {

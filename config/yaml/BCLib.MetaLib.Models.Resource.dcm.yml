@@ -28,3 +28,14 @@ BCLib\MetaLib\Models\Resource:
       column: description
       type: text
       nullable: true
+  manyToMany:
+    _keywords:
+      targetEntity: Keyword
+      joinTable:
+        name: keywords_resources
+        joinColumns:
+          resource_number:
+            referencedColumnName: number
+        inverseJoinColumns:
+          keyword_term:
+            referencedColumnName: term

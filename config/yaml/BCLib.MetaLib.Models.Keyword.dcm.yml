@@ -1,0 +1,10 @@
+BCLib\MetaLib\Models\Keyword:
+  type: entity
+  table: keywords
+  id:
+    _term:
+      column: term
+      type: string
+      length: 140
+      generator:
+        strategy: NONE
