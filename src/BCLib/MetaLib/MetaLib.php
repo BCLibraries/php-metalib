@@ -78,7 +78,7 @@ class MetaLib
         $client = $this->_buildClient();
         $em = $this->_buildEntityManager();
         $get_cat = new GetCategories($requester_ip);
-        $get_res = new GetResourcesByCategory();
+        $get_res = new GetResourcesByCategory(new BriefResourceReader());
         return new DataStoreLoader($em, $client, $get_cat, $get_res);
     }
 

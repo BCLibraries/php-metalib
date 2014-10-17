@@ -2,9 +2,16 @@
 
 namespace BCLib\MetaLib\Commands;
 
+use BCLib\MetaLib\ResponseReader;
+
 class GetResourcesByCategory extends ResourceSearch
 {
-    public function __construct()
+    /**
+     * @var ResponseReader
+     */
+    private $reader;
+
+    public function __construct(ResponseReader $reader)
     {
         $op = 'retrieve_resources_by_category_request';
         $params = [];
@@ -23,6 +30,8 @@ XML;
         $this->addErrorListener('6023', $return_empty);
 
         parent::__construct($op, $params, true);
+
+        $this->reader = $reader;
     }
 
     public function setCategoryId($cat_id)
@@ -32,7 +41,7 @@ XML;
 
     public function read(\SimpleXMLElement $xml)
     {
-        return $this->_readResourceList($xml->children()[0]);
+        return $this->reader->read($xml);
     }
 
     public function fullInfo($get_full_info = true)

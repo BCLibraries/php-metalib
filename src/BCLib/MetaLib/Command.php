@@ -2,8 +2,6 @@
 
 namespace BCLib\MetaLib;
 
-use BCLib\MetaLib\Readers\ResponseReader;
-
 /**
  * Class Command
  * @package BCLib\MetaLib
