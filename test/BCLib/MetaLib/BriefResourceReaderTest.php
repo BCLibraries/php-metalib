@@ -25,7 +25,7 @@ class BriefResourceReaderTest extends \PHPUnit_Framework_TestCase
         $resource_list[1]->short_name = 'Database Two';
         $resource_list[1]->searchable = true;
 
-        $resource_xml = simplexml_load_file(__DIR__ . '/../../../fixtures/resources-02.xml');
+        $resource_xml = simplexml_load_file(__DIR__ . '/../../fixtures/resources-02.xml');
 
         $this->assertEquals($resource_list, $reader->read($resource_xml));
     }
