@@ -31,9 +31,12 @@ class FullResourceReader extends ResourceReader
             foreach ($source_info->xpath(
                 '../slim:record/slim:datafield[@tag="653"]/slim:subfield[@code="a"]'
             ) as $keyword_field) {
-                $keyword = new Keyword();
-                $keyword->term = (string) $keyword_field;
-                $resource->addKeyword($keyword);
+                $term = (string) $keyword_field;
+                if ($term) {
+                    $keyword = new Keyword();
+                    $keyword->term = trim((string) $keyword_field);
+                    $resource->addKeyword($keyword);
+                }
             }
             $resource_list[] = $resource;
         }

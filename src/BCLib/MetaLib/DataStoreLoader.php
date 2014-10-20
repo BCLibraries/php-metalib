@@ -5,6 +5,7 @@ namespace BCLib\MetaLib;
 use BCLib\MetaLib\Commands\GetCategories;
 use BCLib\MetaLib\Commands\GetResourcesByCategory;
 use BCLib\MetaLib\Models\Category;
+use BCLib\MetaLib\Models\Keyword;
 use BCLib\MetaLib\Models\Resource;
 use BCLib\MetaLib\Models\Subcategory;
 use Doctrine\ORM\EntityManager;
@@ -32,14 +33,14 @@ class DataStoreLoader
     protected $_get_res;
 
     protected $_resource_hash = [];
+    protected $_keyword_hash = [];
 
     public function __construct(
         EntityManager $em,
         Client $client,
         GetCategories $get_cat,
         GetResourcesByCategory $get_res
-    )
-    {
+    ) {
         $this->_em = $em;
         $this->_client = $client;
         $this->_get_cat = $get_cat;
@@ -54,6 +55,8 @@ class DataStoreLoader
         foreach ($categories as $category) {
             $this->_loadCategory($category);
         }
+
+        echo "About to flush...\n";
 
         $this->_em->flush();
     }
@@ -81,9 +84,26 @@ class DataStoreLoader
     protected function _getCanonicalResource(Resource $res)
     {
         if (!isset($this->_resource_hash[$res->number])) {
+            $keywords = [];
+            foreach ($res->keywords as $keyword) {
+                if ($keyword->term) {
+                    $keywords[] = $this->_getCanonicalKeyword($keyword);
+                }
+            }
             $this->_resource_hash[$res->number] = $res;
+            $res->keywords = $keywords;
+            echo "Persisting " . $res->name . "(" . $res->number . ")\n";
             $this->_em->persist($res);
         }
         return $this->_resource_hash[$res->number];
+    }
+
+    protected function _getCanonicalKeyword(Keyword $keyword)
+    {
+        if (!isset($this->_keyword_hash[$keyword->term])) {
+            $this->_keyword_hash[$keyword->term] = $keyword;
+            $this->_em->persist($keyword);
+        }
+        return $this->_keyword_hash[$keyword->term];
     }
 }
