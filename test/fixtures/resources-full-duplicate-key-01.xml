@@ -1,0 +1,174 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<x_server_response metalib_version="4.5.2 (790)">
+    <retrieve_resources_by_category_response>
+        <source_full_info>
+            <source_info>
+                <source_internal_number>000001509</source_internal_number>
+                <source_001>BCL01892</source_001>
+                <source_name>Database Two</source_name>
+                <source_short_name>DB Two</source_short_name>
+                <source_searchable_flag>N</source_searchable_flag>
+            </source_info>
+            <record xmlns="http://www.loc.gov/MARC21/slim"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.loc.gov/MARC21/slim
+http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+                <controlfield tag="001">BCL01892</controlfield>
+                <datafield tag="245" ind1="1" ind2=" ">
+                    <subfield code="a">Bibliography of Asian Studies</subfield>
+                </datafield>
+                <datafield tag="210" ind1=" " ind2=" ">
+                    <subfield code="a">Bibliography of Asian Studies</subfield>
+                </datafield>
+                <datafield tag="520" ind1=" " ind2=" ">
+                    <subfield code="a">Description of DB Two.</subfield>
+                </datafield>
+                <datafield tag="594" ind1=" " ind2=" ">
+                    <subfield code="a">SUBSCRIPTION</subfield>
+                </datafield>
+                <datafield tag="500" ind1=" " ind2=" ">
+                    <subfield code="a">1971-present</subfield>
+                </datafield>
+                <datafield tag="110" ind1="2" ind2=" ">
+                    <subfield code="a">Association for Asian Studies, University of Michigan</subfield>
+                </datafield>
+                <datafield tag="TAR" ind1=" " ind2=" ">
+                    <subfield code="a">AAS_BAS</subfield>
+                    <subfield code="f">Y</subfield>
+                </datafield>
+                <datafield tag="ZHS" ind1=" " ind2=" ">
+                    <subfield code="a">http://hti.umich.edu/cgi/s/sru/sru?version=1.1&amp;operation=searchRetrieve&amp;startRecord=1&amp;maximumRecords=10&amp;x-collid=bas&amp;</subfield>
+                </datafield>
+                <datafield tag="PXY" ind1=" " ind2=" ">
+                    <subfield code="a">Y</subfield>
+                </datafield>
+                <datafield tag="AF1" ind1=" " ind2=" ">
+                    <subfield code="a">BCL</subfield>
+                </datafield>
+                <datafield tag="AF3" ind1=" " ind2=" ">
+                    <subfield code="a">BC</subfield>
+                </datafield>
+                <datafield tag="STA" ind1=" " ind2=" ">
+                    <subfield code="a">ACTIVE</subfield>
+                </datafield>
+                <controlfield tag="CKB">CKB00178</controlfield>
+                <datafield tag="RNK" ind1=" " ind2=" ">
+                    <subfield code="a">3</subfield>
+                </datafield>
+                <datafield tag="CJK" ind1=" " ind2=" ">
+                    <subfield code="a">lat</subfield>
+                </datafield>
+                <controlfield tag="FMT">DD</controlfield>
+                <datafield tag="ATG" ind1=" " ind2=" ">
+                    <subfield code="a">RESTRICT</subfield>
+                </datafield>
+                <datafield tag="655" ind1=" " ind2=" ">
+                    <subfield code="a">Article Index Database</subfield>
+                </datafield>
+                <datafield tag="856" ind1="4" ind2="1">
+                    <subfield code="u">http://bmc.lib.umich.edu/bas</subfield>
+                </datafield>
+                <datafield tag="650" ind1=" " ind2=" ">
+                    <subfield code="a">Humanities-general</subfield>
+                </datafield>
+                <datafield tag="650" ind1=" " ind2=" ">
+                    <subfield code="a">Social sciences-general</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="c">20041123</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1437</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="c">20041123</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1521</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="c">20041219</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">2050</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bc</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20050406</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1531</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bob</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20061017</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1505</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bob</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20061017</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1511</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bob</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20090327</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1528</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bob</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20090327</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1528</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bob</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20090327</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1528</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bcadmin</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20110927</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1501</subfield>
+                </datafield>
+                <datafield tag="653" ind1=" " ind2=" ">
+                    <subfield code="a">Asian Languages and Cultures</subfield>
+                </datafield>
+                <datafield tag="653" ind1=" " ind2=" ">
+                    <subfield code="a">Chinese Studies</subfield>
+                </datafield>
+                <datafield tag="653" ind1=" " ind2=" ">
+                    <subfield code="a">Chinese Studies</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bcadmin</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20140127</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1723</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bcadmin</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20140127</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">1724</subfield>
+                </datafield>
+                <datafield tag="CAT" ind1=" " ind2=" ">
+                    <subfield code="a">bcadmin</subfield>
+                    <subfield code="b">00</subfield>
+                    <subfield code="c">20140910</subfield>
+                    <subfield code="l">DAT01</subfield>
+                    <subfield code="h">0851</subfield>
+                </datafield>
+            </record>
+        </source_full_info>
+    </retrieve_resources_by_category_response>
+</x_server_response>

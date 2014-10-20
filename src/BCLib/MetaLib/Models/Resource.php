@@ -23,6 +23,7 @@ class Resource
     protected $_searchable;
     protected $_description;
     protected $_keywords = [];
+    protected $_keywords_by_term = [];
 
     public function __toString()
     {
@@ -31,10 +32,13 @@ class Resource
 
     use Accessor;
     protected $_gettable = ['internal_number', 'number', 'name', 'short_name', 'searchable', 'description', 'keywords'];
-    protected $_settable = ['internal_number', 'number', 'name', 'short_name', 'searchable', 'description'];
+    protected $_settable = ['internal_number', 'number', 'name', 'short_name', 'searchable', 'description', 'keywords'];
 
     public function addKeyword(Keyword $keyword)
     {
-        $this->_keywords[] = new $keyword;
+        if (!isset($this->_keywords_by_term[$keyword->term])) {
+            $this->_keywords[] = $keyword;
+            $this->_keywords_by_term[$keyword->term] = true;
+        }
     }
 } 
